@@ -1,0 +1,36 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+html {
+  background: #000000;
+}
+
+@theme inline {
+  --color-background: #000000;
+  --color-foreground: #ffffff;
+  --radius: 0.75rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #000000;
+  color: #ffffff;
+  font-family: system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+input, textarea, button, select {
+  font-family: inherit;
+}
+
+/* Hide Next.js development indicator */
+nextjs-portal {
+  display: none !important;
+}
