@@ -75,3 +75,6 @@ skills-lock.json
 .agents/
 .claude/
 .windsurf/
+
+# sensitive files
+no/
