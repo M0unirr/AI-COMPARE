@@ -78,3 +78,6 @@ skills-lock.json
 
 # sensitive files
 no/
+
+.vercel
+.env*
