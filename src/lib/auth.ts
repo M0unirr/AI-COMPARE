@@ -3,7 +3,10 @@ import { prismaAdapter } from "@better-auth/prisma-adapter";
 import { PrismaClient } from "@/generated/prisma/client";
 import { PrismaLibSql } from "@prisma/adapter-libsql";
 
-const adapter = new PrismaLibSql({ url: "file:./dev.db" });
+const adapter = new PrismaLibSql({
+  url: process.env.DATABASE_URL!,
+  authToken: process.env.DATABASE_AUTH_TOKEN,
+});
 const prisma = new PrismaClient({ adapter });
 
 export const auth = betterAuth({
