@@ -9,11 +9,13 @@ const adapter = new PrismaLibSql({
 });
 const prisma = new PrismaClient({ adapter });
 
+const baseURL = process.env.BETTER_AUTH_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+
 export const auth = betterAuth({
-  secret: process.env.BETTER_AUTH_SECRET || "4c27538efd006332d678a9206975aa86b9c5c3b1488cf006f0086d7dae2c5d3b",
-  baseURL: process.env.BETTER_AUTH_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000"),
+  secret: process.env.BETTER_AUTH_SECRET!,
+  baseURL,
   trustedOrigins: [
-    process.env.BETTER_AUTH_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000"),
+    baseURL,
     process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
   ],
   database: prismaAdapter(prisma, {
