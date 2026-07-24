@@ -1,10 +1,11 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { getSessionCookie } from "better-auth/cookies";
 
 export function proxy(req: NextRequest) {
-  const sessionCookie = req.cookies.get("better-auth.session_token");
+  const sessionCookie = getSessionCookie(req);
 
-  if (!sessionCookie && req.nextUrl.pathname.startsWith("/chat")) {
+  if (!sessionCookie) {
     return NextResponse.redirect(new URL("/", req.url));
   }
 
